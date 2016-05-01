@@ -67,6 +67,34 @@ body :-ms-input-placeholder {
           transition-timing-function: ease-in-put;
   font-weight: 100;
 }
+
+table {
+ border: 1px solid white;
+    
+    width: 100%;
+}
+
+table, th{
+     border: none;
+     padding: 1%;
+       background: transparent;
+
+}
+
+table,td{
+      border: 1px solid white;
+  
+   border-collapse: collapse;
+}
+
+table,tr{
+   padding: 10%;
+  border:  none;
+}
+
+
+
+
 form {
   padding: 20px 0;
   position: relative;
@@ -99,6 +127,9 @@ form input:focus {
   background-color: transparent;
   width: 300px;
   color:white;
+}
+footer { 
+    display: block;
 }
 form button {
   -webkit-appearance: none;
@@ -134,12 +165,12 @@ form select {
   align-content: center;
   border: 1;
   border-color: white;
-  padding: 10px 15px;
+  padding: 10px 10px;
   color: white;
   border-radius: 3px;
   width: 250px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: 14px;
   -webkit-transition-duration: 0.25s;
           transition-duration: 0.25s;
 }
@@ -181,7 +212,7 @@ button {
           transition-duration: 0.25s;
 }
 button:hover {
-  background-color: #f5f7f9;
+  background-color: transparent;
 }
 .bg-bubbles {
   position: absolute;
@@ -293,3 +324,6 @@ button:hover {
             transform: translateY(-700px) rotate(600deg);
   }
 }
+
+
+

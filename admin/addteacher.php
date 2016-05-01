@@ -69,6 +69,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 	
 	  <a class="navbar-brand" href='admindash.php'>Add new Faculty</a>
 	
+<script src="https://code.jquery.com/jquery-1.11.3.js" type="text/javascript" charset="utf-8"></script>
+		<script language="javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.22/jquery-ui.min.js"></script>
+		<script src="teacher.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.11/jquery-ui.min.js"></script>
+<script src="http://code.jquery.com/jquery-migrate-1.0.0.js"></script>
+
+
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
         <li><a href="admindash.php">Logged in As     <?php echo $_SESSION["username"]; ?></a></li>
@@ -82,17 +89,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST")
 		<h4>Add Faculty Details</h4>
 		
 		<form class="form" action="" method="POST">
-			<input name="sid" type="text" placeholder="Staff ID" required>
-			<input name="fn" type="text" placeholder="First Name" required>
-			<input name="mn" type="text" placeholder="Middle Name" required>
-			<input name="ln" type="text" placeholder="Last Name" required>
-			<input name="desg" type="text" placeholder="Designation" required>
-			<input name="did" type="text" placeholder="Department ID" required>
-			<input name="hid" type="text" placeholder="HOD ID(if applicable)" optional>
-			<input name="pass" type="password" placeholder="Enter a strong password" required>
-			<input name="pass2" type="password" placeholder="Re-enter your password" required>
+			<input name="sid" id="sid" type="text" placeholder="Staff ID" required>
+			<input name="fn"  id="fn" type="text" placeholder="First Name" required>
+			<input name="mn" id="mn" type="text" placeholder="Middle Name" required>
+			<input name="ln" id="ln" type="text" placeholder="Last Name" required>
+			<input name="desg" id="desg" type="text" placeholder="Designation" required>
+			<input name="did" id="did" type="text" placeholder="Department ID" required>
+			<input name="hid" id="sid" type="text" placeholder="HOD ID(if applicable)" optional>
+			<input name="pass" id="p1" type="password" placeholder="Enter a strong password" required>
+			<input name="pass2" id="p2" type="password" placeholder="Re-enter your password" required>
 			
-			<input name="save" type="submit" id="login-button" value="Proceed">
+			<input name="save" type="submit" id="sub" value="Proceed">
 		</form>
 	 </div>
 	

@@ -4,7 +4,7 @@
 
 error_reporting(E_ALL);
 ini_set("display_errors",'1');
-ini_set('include_path', '/var/www/html/admin/');
+ini_set('include_path', 'B:\Sem6\Xampp\htdocs\html\admin');
 require_once "recaptchalib.php";
 $secret = "6Lc0uxwTAAAAAAId2HHpRjlqOFuAX2WUdmPxJ34D";
  

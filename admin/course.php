@@ -1,5 +1,8 @@
 <html>
 <?php 
+error_reporting(E_ALL);
+ini_set("display_errors",'1');
+
 //session_start();
 include("connect.php");
 session_start();
@@ -20,15 +23,21 @@ $_SESSION['start'] = time();
     $cid=$_REQUEST['ID'];
     $nocre=$_REQUEST['noc'];
     $type=$_REQUEST['type'];
+    $name=$_REQUEST['name'];
+    
     $dept=$_REQUEST['deptID'];
-    $query="insert into Course(`Semester`,`Course_ID`,`Credits`,`Course_Tyoe`,`Dept_ID`)  
-    VALUES('$sem','$cid','$nocre','$type','$dept')";   
+    $query="insert into Course(`Semester`,`Course_ID`,`Credits`,`Course_Tyoe`,`Dept_ID`,`Course_Name`)  
+    VALUES('$sem','$cid','$nocre','$type','$dept','$name')";   
     echo "<script>console.log('Registration...')</script>";
     $res=mysql_query($query);
-   
+    if($res){
     echo "<script>alert('Registration Successful')</script>";
-    echo "<script>self.location='form.php'</script>";
-
+    echo "<script>self.location='admindash.php'</script>";
+    }
+    else{
+    echo "<script>alert('Error!')</script>";
+     echo mysql_error();
+    }
 
 
 
@@ -103,6 +112,7 @@ $_SESSION['start'] = time();
 			
 			<input id="noc" name="noc" type="number" placeholder="Number of Credits" required>
 		        <input id="type" name="type" type="text" placeholder="Elective/Mandatory?" required>
+		        <input id="type" name="name" type="text" placeholder="Course Name" required>
 				
 		          <input id="dept"name="deptID"type="text" placeholder="Department ID" required>
 			<button type="submit" id="sub" name= "save" id="login-button">Proceed</button><br><br>

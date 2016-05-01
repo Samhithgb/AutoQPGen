@@ -3,7 +3,7 @@
 include("connect.php");
 session_start();
 session_cache_expire( 20 );
-$inactive = 10;
+$inactive = 1200;
 if(isset($_SESSION['start']) ) {
 	$session_life = time() - $_SESSION['start'];
 	if($session_life > $inactive){
