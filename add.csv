@@ -1,0 +1,62 @@
+Co,Question,Description,Lod,U-No,marks
+1,"Explain the typical components module of a DBMS, with a neat diagram",dbms,1,1,10
+2,What is database? Explain the implicite properties of database.,dbms,3,1,10
+3,"With neat diagram, explain ""three scherna architecture"".",scherna architecture,2,1,8
+2,Explain with sketch the different phases of database design,database,2,1,6
+1,"Define the following terms:
+i) Data model ii) Schema iii) Metada",database,1,1,4
+2,"Cive the schema :
+Student (USN, NAME, BRANCH, PERCENTAGE)
+Faculty (FID, FNAME, DEPT, DESIGNATION, SALARY)
+Course (CID, CNAME, FID)
+Enroll (CID, USN, GRADE)",schema concepts,3,1,4
+3,explain generalization using an example,er model concepts,4,1,4
+5,illustrate specialization with an example,er model concepts,4,1,4
+4,write a note on various notations used in er diagram,er model concepts,2,1,4
+4,explain update operation with examples that illustrate all the constraint voilations,relational model,4,2,10
+3,explain second and third normal forms with examples,normal forms,3,2,10
+2,explain boyce-codd normal forms with example,normal forms,2,2,8
+1,write a note on relational decompositions,relational dn design,1,2,6
+1,list design guidelines for relational schemas,relational dn design,1,2,4
+2,write a note on functional dependencies,relational dn design,2,2,4
+3,illustrate division operation with example,relational algebra,3,2,4
+4,illustrate conversion from first to second normal form with an example,normal forms,4,2,4
+2,write a note on outer join operations,join operation,2,2,4
+4,write a note on various data definition statements in SQL,SQL,4,3,10
+1,write a note on database programming issues and techniques,SQL,1,3,10
+1,with examples illustrate specifying of various basic constraints in SQL,Basics Of SQL,3,3,8
+2,"Consider the following schema and writ the relational algebra expressions for the queries given below: Suppliers (sid : integer. sname : string. address : string) Parts (pid : integer, pname : string. color : string) Catalog (sid : integer, pid : integer, cost : real) write queries for the following:i) Find the names of suppliers who supply some red parts.
+ii) Find the sidS of suppliers who supply some red parts or at22l packer street.
+iii) Find the sids of suppliers who supply some red part and some greenpa",SQL Queries,4,3,8
+3,How is a view created and dropped? What problems are associated with updating of views?,SQL,3,3,8
+2,"Write the SQL query for the following Database Schema : Works (Pname, Cname, Salary) Lives (Pname, Street, City) Located in (Cname, City) Manager (Pname, Mgrname) i) Find the names of all persons who live in the city ""Bangalore"". ii) Retrieve the names of all person of ""Infosys"" whose salary is between Rs 50,000 and Rs 90,000. iii) Find the names of all persons who lives and work in same city.",SQL,4,3,8
+3,. Explain the following i) Embedded SQL ,SQL Programming,2,3,4
+2,. Explain the following i) Database stored procedu,SQL Programming,2,3,4
+1,what is view?what are its advantages?,SQL Programming,1,3,4
+1,explain drop command,SQL Programming,1,3,4
+1,explain alter command,SQL Programming,1,3,4
+2,write a note on SQL/PSM,SQL Programming,1,3,4
+2,write a note on dynamic SQL,SQL Programming,1,3,4
+2,write a note on SQLJ,SQL Programming,1,3,4
+4,"Write the SQL query for the following Database Schema : Works (Pname, Cname, Salary) Lives (Pname, Street, City) Located in (Cname, City) Manager (Pname, Mgrname) i.List the names of the people who work for ""Tech M"" along',vith the cities they live in. ii) Find the average salary of ""lnfosys"" perso",SQL Queries,4,3,4
+2,write a note on checkpointing,Checkpoint,2,4,10
+3,write a note on deadocks and handling them,deadlocks,2,4,10
+2,write a note on media recovery,crash recovery,2,4,6
+1,write a note on serializability,crash recovery,2,4,4
+2,write a note on recoverability,crash recovery,2,4,4
+3,give an example of concurrent execution of transactions,conurrency control,2,4,4
+3,explain about transaction support in SQL,conurrency control,3,4,4
+3,briefly explain lock conversions,conurrency control,2,4,4
+4,write a note on performance of locking,conurrency control,4,4,4
+2,briefly explain recovery from system crash,crash recovery,2,4,4
+2,briefly explain the structure of LOG file,crash recovery,2,4,4
+1,write a note on triggers,database security,1,5,8
+2,"compare multimedia,temporal and spatial databases",enhanced database models,2,5,8
+1,write a note on mandatory access control,database security,2,5,4
+2,write a note on discretionary access control,database security,2,5,4
+3,write a note on statistical database security,database security,2,5,4
+2,list various database security issues,database security,2,5,4
+2,write a note on role based access control,database security,2,5,4
+2,list the applications of multimedia databases,enhanced database models,2,5,4
+1,list the applications of temporal databases,enhanced database models,2,5,4
+1,list the applications of spatial databases,enhanced database models,2,5,4
