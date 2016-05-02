@@ -37,7 +37,7 @@ if(isset($_SESSION['username'])){
 	$k=$row["FName"];
 	$l=$row["MName"];
 	$m=$row["LName"];
-	$n=$row["Teacher_ID"];
+	
 	
     $options2.=$f.'.'.$k.' '.$l.' '.$m; 
 	$_SESSION['name']=$options2;

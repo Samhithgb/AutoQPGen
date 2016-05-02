@@ -44,7 +44,6 @@ $time=date("h:i:sa");
 $type='Admin';
 $sql2 = "insert into Login_History values('$date','$time','$username','$type')"	;
 mysqli_query($con,$sql2);
-echo 'success';
 $_SESSION['username']=$username;
  echo "<script>self.location='admin/admindash.php'</script>";
 }else{

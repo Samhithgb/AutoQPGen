@@ -1,7 +1,7 @@
 <?php 
 include("connect.php");
-error_reporting(E_ALL);
-ini_set("display_errors",'1');
+//error_reporting(E_ALL);
+//ini_set("display_errors",'1');
 session_start();
 $l1=0;
 $l2=0;
@@ -114,8 +114,14 @@ function pick_questions($mark,$y,$CID)
  }//end of function
 
 
-function pick_theory_questions($u,$CID,$used_questions,$y){
+function pick_theory_questions($u,$CID,$used_questions,$y,$d){
 global $table,$l1,$l2,$l3,$q;
+$x=$d;
+$flag=$y;
+$a="1";
+$b="2";
+$c="3";
+$dot=".";
 $lim=16;$cum=0;
 $sel=rand(0,2);
 
@@ -160,7 +166,7 @@ if(!(in_array($r1[0],$used_questions))){
 $z++;    $q1=$r1[1];
 //printf ("Question: %s        Marks: %d     Unit: %d     LOD : %d",$r1[2],$r1[1],$r1[3],$r1[5]);
         $q++;
-        $table.= "<tr><td>$q</td>";
+        $table.= "<tr><td>$x$dot$a</td>";
         $table.="<td style='width:1000px'>"; 
         $table.=htmlspecialchars(AesCtr::decrypt($r1[2], $pw, 256));
         $table.=  "</td><td>";   
@@ -170,6 +176,7 @@ $z++;    $q1=$r1[1];
         $table.=  "</td><td>";   
         $table.=  $r1[6];        
         $table.=  "</td></tr>";
+
  if($r1[5]==1) $l1++;
              else if($r1[5]==2) $l2++;
              else if($r1[5]==3) $l3++;
@@ -187,7 +194,7 @@ if(!(in_array($r2[0],$used_questions))){
 $z++;$q2=$r2[1];
 $q++;
 //printf ("Question: %s        Marks: %d     Unit: %d     LOD : %d",$r2[2],$r2[1],$r2[3],$r2[5]);
-$table.= "<tr><td>$q</td>";
+$table.= "<tr><td>$x$dot$b</td>";
 $table.="<td style='width:1000px'>"; 
          $table.= htmlspecialchars(AesCtr::decrypt($r2[2], $pw, 256));
          $table.=  "</td><td>";   
@@ -215,7 +222,7 @@ while($r3 = mysql_fetch_array($res3, MYSQL_BOTH) and $z<1){
 if(!(in_array($r3[0],$used_questions))){
 $z++;$q3=$r3[1];$q++;
 //printf ("Question: %s        Marks: %d     Unit: %d     LOD : %d",$r3[2],$r3[1],$r3[3],$r3[5]);
-         $table.= "<tr><td>$q</td>";
+         $table.= "<tr><td>$x$dot$c</td>";
          $table.="<td style='width:1000px'>"; 
          $table.= htmlspecialchars(AesCtr::decrypt($r3[2], $pw, 256));
          $table.=  "</td><td>";   
@@ -243,6 +250,23 @@ if($cum<$lim)
 {
    echo "<script>self.location='error.html'</script>";
 }
+if ($flag==0){
+
+$or="OR";
+         $table.= "<tr><td></td>";
+         $table.= "<td><center><strong>$or</strong></center></td>";
+         $table.=  "</tr>";
+}
+
+if ($flag==1){
+$or=".";
+         $table.= "<tr>";
+         $table.= "<td><center>$or</center></td>";
+         $table.=  "</tr>";
+
+
+}
+
 return $used_questions;     
 }  //end of function
      
@@ -266,6 +290,7 @@ $th_max=160;
 $no_of_units=5;
 $x=1;	
 $marks=4;
+     $sem = mysql_result(mysql_query("select Semester from Course where Course_ID='$CID'"),0);
 	
     //$marks1=ceil($th_max/$no_of_units);
     $f1=0;
@@ -291,6 +316,7 @@ $table.=  "</table>";
 $table.=  "<br><center><strong>Part-A</strong></center><br>";
 $table.=  "<center><table border='1' style='border-collapse: collapse;'>";
 $table.=  "<tr><th>No</th><th>Question</th><th>Marks</th><th>LOD</th><th>CO</th></tr>";  
+
 while($x<=5){
 		//echo "<script>console.log('Here1');</script>";
 			if($cnt[$x]==1)
@@ -317,15 +343,16 @@ $table.= "</table></center>";
 $table.= "<br><center><strong>Part-B</strong></center><br><br>";
 $table.= "<center><table border='1' style='border-collapse: collapse;'>";
 $table.= "<tr><th>No</th><th>Question</th><th>Marks</th><th>LOD</th><th>CO</th></tr>";
-     $sem = mysql_result(mysql_query("select Semester from Course where Course_ID='$CID'"),0);
 $y=0;
+$z=1;
 while($x<=5){
    while($y<2)
   {
-   $used=pick_theory_questions($x,$CID,$used,$y);
-   $y++; 
+   $used=pick_theory_questions($x,$CID,$used,$y,$z);
+   $y++;$z++; 
    
   }
+   //$z++;
    $x++;
    $y=0;
 }

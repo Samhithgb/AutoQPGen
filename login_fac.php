@@ -27,7 +27,7 @@ $con = mysqli_connect(HOST,USER,PASS,DB);
 
 $username = $_POST['uname'];
 $password =md5($_POST['password']); 
-var_dump($password);
+
 $sql = "select * from Teacher where '$username'=Teacher_ID and '$password'=Password";
 
 $res = mysqli_query($con,$sql);
@@ -39,7 +39,7 @@ echo "<script>>console.log('done')</script>";
 }
 
 
-if(isset($check)/*and $response != null && $response->success*/){
+if(isset($check) and $response != null && $response->success){
 $date=date("Y/m/d");
 $time=date("h:i:sa");
 $type='Faculty';
@@ -58,3 +58,4 @@ echo "<script>self.location='login_fac.html'</script>";
  
 mysqli_close($con);
 ?>
+ 

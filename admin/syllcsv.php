@@ -29,11 +29,11 @@ if(isset($_POST["submit"]))
 		$sql = mysql_query("INSERT INTO Topics VALUES ('$unit','$cid','$syll')");
 	}
 	
-		if($sql){
+		
 			echo "<script>alert('Your database has imported successfully');</script>";
-		}else{
-			echo "<script>alert('Sorry! There is some problem.Check your file');</script>";
-		}
+
+		//	echo "<script>alert('Sorry! There is some problem.Check your file');</script>";
+		
 }
 
 	

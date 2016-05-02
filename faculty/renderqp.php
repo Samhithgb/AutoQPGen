@@ -22,9 +22,8 @@ echo "<body>
 </body>";
 $eval=$_SESSION['eval'];
 include("connect.php");
-require_once '/var/www/html/admin/phpdocx-trial-pro-5.5/classes/CreateDocx.inc';
 if(isset($_REQUEST['approve'])){
-$docx = new CreateDocx();
+
 $qp=$_SESSION['qp'];
 print $qp;
 echo "
@@ -41,7 +40,7 @@ $qpid=$_REQUEST['qps'];
 $_SESSION['qpaper']=$qpid;
 $query="Select Content from Prev_Qp where QP_ID='$qpid'";
 $res=mysql_query($query);
-if(!res){
+if(!$res){
 		echo "<script>alert('Question Paper Not Found!!');</script>";
 }
 else{

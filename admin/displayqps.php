@@ -16,7 +16,7 @@ if(isset($_SESSION['start']) ) {
 $_SESSION['start'] = time();
 	
 include("connect.php");
-include("html_to_doc.inc.php");
+
 if(isset($_REQUEST['go2'])){
 
 $subject = $_REQUEST['subject'];
@@ -66,6 +66,16 @@ mysql_close($con);
 
 
 }
+
+if(isset($_REQUEST['display'])){
+  
+  $_SESSION['qps']=$_REQUEST['qps'];
+		echo "<script>self.location='renderqp.php'</script>";
+  
+  
+}
+
+
 ?>
 <head>
 	 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -101,7 +111,7 @@ mysql_close($con);
 </nav>
 <h2>Choose the Question Paper ID to view</h2>
  
-<form method="post" action="renderqp.php">
+<form method="post">
 <SELECT name="qps">
 <?php echo($options);?>		
 </SELECT>
