@@ -101,6 +101,8 @@ if(isset($_REQUEST['co'])){
     </div>
   </div>
 </nav>
+<img src="logo.png">
+
 			<h4>Select an operation :</h4><br><br>
 			<form method="post">
 			<button type="button" id="addfaculty" onClick="location.href='addteacher.php'">Add Faculty</button>
