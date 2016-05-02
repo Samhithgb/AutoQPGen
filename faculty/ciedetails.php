@@ -19,6 +19,7 @@ $table ='';
 $l1=0;
 $l2=0;
 $l3=0;
+$q=0;
 echo "
 
  <form><center>
@@ -68,8 +69,9 @@ if(isset($_REQUEST['sel'])){
 
 function pick_questions($mark,$y,$CID)
 {
+  
 	$pw="password";
-  global $table,$l1,$l2,$l3;
+  global $table,$l1,$l2,$l3,$q;
 	echo "<script>console.log('Pick Here');</script>";
      $lim=0;
     $query="SELECT Ques_ID,Marks,Description,Unit_No,Course_Id,LOD,CO FROM Questions WHERE Unit_No='$y' and Course_Id='$CID' and Marks<=2 ORDER BY RAND()";
@@ -80,8 +82,10 @@ function pick_questions($mark,$y,$CID)
      while (($row = mysql_fetch_array($res, MYSQL_BOTH)) AND ($lim<=$mark) ) {
      if(($mark-$lim)==1){
 				if($row[1]==1){
+          $q++;
          // printf ("Question: %s      Marks: %d    Unit: %d     LOD : %d",$row[2],$row[1],$row[3],$row[5]);
-          $table.= "<tr><td style='width:1000px'>"; 
+          $table.= "<tr><td>$q</td>";
+          $table.="<td style='width:1000px'>"; 
          $table.= htmlspecialchars(AesCtr::decrypt($row[2], $pw, 256));
         $table.=  "</td><td>";   
            $table.=  $row[1];
@@ -112,7 +116,9 @@ function pick_questions($mark,$y,$CID)
                           else continue;
                         }
           else if($lim<$mark){
-         $table.=  "<tr><td style='width:1000px'>"; 
+            $q++;
+         $table.=  "<tr><td>$q</td>";
+         $table.="<td style='width:1000px'>"; 
          $table.=   htmlspecialchars(AesCtr::decrypt($row[2], $pw, 256));
                   $table.= "</td><td>";   
           $table.=  $row[1];
@@ -141,7 +147,7 @@ function pick_questions($mark,$y,$CID)
 
 
 function pick_theory_questions($unit,$CID,$used_questions){
-global $table,$l1,$l2,$l3;
+global $table,$l1,$l2,$l3,$q;
 $marks=0;
 $arr=array(6,8,5,10);
 $pw="password";
@@ -186,8 +192,9 @@ while($res = mysql_fetch_array($res1, MYSQL_BOTH) and $z<1){
 
 
 if(!(in_array($res[0],$used_questions))){
-$z++; 
- $table.=  "<tr><td style='width:1000px'>"; 
+$z++; $q++;
+ $table.=  "<tr><td>$q</td>";
+ $table.="<td style='width:1000px'>"; 
           $table.=   htmlspecialchars(AesCtr::decrypt($res[2], $pw, 256));
          $table.=  "</td ><td>";   
            $table.=  $res[1];
@@ -269,11 +276,11 @@ $cnt[5]=0;
 $no_of_units=0; 
 $t=array(0,0,0,0,0,0);
 
-if($u1=="yes") {$cnt[1]++;$no_of_units++;$t[1]=$_REQUEST['tunit_1'];}
-if($u2=="yes") {$cnt[2]++;$no_of_units++;$t[2]=$_REQUEST['tunit_2'];}
-if($u3=="yes") {$cnt[3]++;$no_of_units++;$t[3]=$_REQUEST['tunit_3'];}
-if($u4=="yes") {$cnt[4]++;$no_of_units++;$t[4]=$_REQUEST['tunit_4'];}
-if($u5=="yes") {$cnt[5]++;$no_of_units++;$t[5]=$_REQUEST['tunit_5'];}
+if($u1=="y"||$u1=="Y" ) {$cnt[1]++;$no_of_units++;$t[1]=$_REQUEST['tunit_1'];}
+if($u2=="y"|| $u2=="Y") {$cnt[2]++;$no_of_units++;$t[2]=$_REQUEST['tunit_2'];}
+if($u3=="y"|| $u3=="Y") {$cnt[3]++;$no_of_units++;$t[3]=$_REQUEST['tunit_3'];}
+if($u4=="y" || $u4=="Y") {$cnt[4]++;$no_of_units++;$t[4]=$_REQUEST['tunit_4'];}
+if($u5=="y" || $u5=="Y") {$cnt[5]++;$no_of_units++;$t[5]=$_REQUEST['tunit_5'];}
     
     $t1="CIE";
     $t2="SEE";
@@ -323,7 +330,7 @@ if($u5=="yes") {$cnt[5]++;$no_of_units++;$t[5]=$_REQUEST['tunit_5'];}
 
 $table.=  "<br><center><strong>Part 1</strong></center><br>";
  $table.=  "<center><table border='1' style='border-collapse: collapse;'>";
-    $table.=  "<tr><th>Question</th><th>Marks</th><th>LOD</th><th>CO</th></tr>"; 
+    $table.=  "<tr><th>No</th><th>Question</th><th>Marks</th><th>LOD</th><th>CO</th></tr>"; 
   
 while($x<=5){
  
@@ -377,7 +384,7 @@ while($x<=5){
 $x++;
 
 }
-
+$q=0;
 $used=array();
 
 $table.=  "</table></center>";
@@ -385,7 +392,7 @@ $table.=  "<br><center><strong>Part 2</strong></center><br><br>";
 $x=1;
 //printf("%d %d %d %d %d",$t[1],$t[2],$t[3],$t[4],$t[5]);
  $table.= "<center><table border='1' style='border-collapse: collapse;'>";
-    $table.="<tr><th>Question</th><th>Marks</th><th>LOD</th><th>CO</th></tr>"; 
+    $table.="<tr><th>No</th><th>Question</th><th>Marks</th><th>LOD</th><th>CO</th></tr>"; 
 while($x<=5){
 		//echo "<script>console.log('Inside while');</script>";
         while($t[$x]!=0){
@@ -411,7 +418,7 @@ $_SESSION['l3']=$l3;
 echo $table1;
 
 
-require_once '/var/www/html/admin/phpdocx-trial-pro-5.5/classes/CreateDocx.inc';
+
 //$docx = new CreateDocx();
 //$docx->embedHTML($table1);
 

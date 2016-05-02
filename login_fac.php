@@ -1,6 +1,4 @@
 <?php
-error_reporting(E_ALL);
-ini_set("display_errors",'1');
 ini_set('include_path', 'B:\Sem6\Xampp\htdocs\html\admin');
 require_once "recaptchalib.php";
 $secret = "6Lc0uxwTAAAAAAId2HHpRjlqOFuAX2WUdmPxJ34D";
@@ -48,7 +46,7 @@ $type='Faculty';
 $sql2 = "insert into Login_History values('$date','$time','$username','$type')"	;
 mysqli_query($con,$sql2);
 
-echo 'success';
+
 $_SESSION['username']=$username;
 
 echo "<script>self.location='faculty/facultydash.php'</script>";

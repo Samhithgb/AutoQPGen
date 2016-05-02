@@ -6,6 +6,7 @@ session_start();
 $l1=0;
 $l2=0;
 $l3=0;
+$q=0;
 include("connect.php");
 	session_cache_expire( 20 );
 $inactive = 1200;
@@ -51,8 +52,9 @@ require 'aesctr.class.php';
 $table ="<head><meta http-equiv='Content-type' content='text/html; charset=utf-8' /></head>";
 function pick_questions($mark,$y,$CID)
 {
+  
 	$pw="password";
-  global $table,$l1,$l2,$l3;
+  global $table,$l1,$l2,$l3,$q;
   echo "<script>console.log('Pick Here');</script>";
      $lim=0;
    //  echo"<br>"; 
@@ -64,8 +66,11 @@ function pick_questions($mark,$y,$CID)
      while (($row = mysql_fetch_array($res, MYSQL_BOTH)) AND ($lim<=$mark) ) {
      if(($mark-$lim)==1){
 	if($row[1]==1){
+         $q++;
           //printf ("Question: %s      Marks: %d    Unit: %d     LOD : %d",$row[2],$row[1],$row[3],$row[5]);
-         $table.= "<tr><td style='width:1000px'>"; 
+         $table.= "<tr><td>$q</td>";
+         $table.="<td style='width:1000px'>";
+         
          $table.= htmlspecialchars(AesCtr::decrypt($row[2], $pw, 256));
          $table.=  "</td><td>";   
          $table.=  $row[1];
@@ -85,18 +90,20 @@ function pick_questions($mark,$y,$CID)
                         }
           if($lim<$mark){
        
-          //printf ("Question: %s        Marks: %d         Unit: %d     LOD : %d",$row[2],$row[1],$row[3],$row[5]);
-          $table.= "<tr><td style='width:1000px'>"; 
-          $table.= htmlspecialchars(AesCtr::decrypt($row[2], $pw, 256));
-          $table.=  "</td><td>";   
-          $table.=  $row[1];       
-          $table.=  "</td><td>";   
-          $table.=  $row[5];
-          $table.=  "</td><td>";   
-          $table.=  $row[6];
-          $table.=  "</td></tr>";
-
-	  $lim=$lim+$row[1];
+         $q++;
+          //printf ("Question: %s      Marks: %d    Unit: %d     LOD : %d",$row[2],$row[1],$row[3],$row[5]);
+         $table.= "<tr><td>$q</td>";
+         $table.="<td style='width:1000px'>";
+         
+         $table.= htmlspecialchars(AesCtr::decrypt($row[2], $pw, 256));
+         $table.=  "</td><td>";   
+         $table.=  $row[1];
+         $table.=  "</td><td>";   
+         $table.=  $row[5];
+         $table.=  "</td><td>";   
+         $table.=  $row[6];
+         $table.=  "</td></tr>";
+         $lim=$lim+$row[1];
  if($row[5]==1) $l1++;
              else if($row[5]==2) $l2++;
              else if($row[5]==3) $l3++;
@@ -108,7 +115,7 @@ function pick_questions($mark,$y,$CID)
 
 
 function pick_theory_questions($u,$CID,$used_questions,$y){
-global $table,$l1,$l2,$l3;
+global $table,$l1,$l2,$l3,$q;
 $lim=16;$cum=0;
 $sel=rand(0,2);
 
@@ -152,7 +159,9 @@ while($r1 = mysql_fetch_array($res1,MYSQL_BOTH) and $z<1){
 if(!(in_array($r1[0],$used_questions))){
 $z++;    $q1=$r1[1];
 //printf ("Question: %s        Marks: %d     Unit: %d     LOD : %d",$r1[2],$r1[1],$r1[3],$r1[5]);
-        $table.= "<tr><td style='width:1000px'>"; 
+        $q++;
+        $table.= "<tr><td>$q</td>";
+        $table.="<td style='width:1000px'>"; 
         $table.=htmlspecialchars(AesCtr::decrypt($r1[2], $pw, 256));
         $table.=  "</td><td>";   
         $table.=  $r1[1];        
@@ -176,8 +185,10 @@ $z=0;
 while($r2 = mysql_fetch_array($res2,MYSQL_BOTH) and $z<1){
 if(!(in_array($r2[0],$used_questions))){
 $z++;$q2=$r2[1];
+$q++;
 //printf ("Question: %s        Marks: %d     Unit: %d     LOD : %d",$r2[2],$r2[1],$r2[3],$r2[5]);
-$table.= "<tr><td style='width:1000px'>"; 
+$table.= "<tr><td>$q</td>";
+$table.="<td style='width:1000px'>"; 
          $table.= htmlspecialchars(AesCtr::decrypt($r2[2], $pw, 256));
          $table.=  "</td><td>";   
          $table.=  $r2[1];       
@@ -202,9 +213,10 @@ if($no==3){
 $z=0;   
 while($r3 = mysql_fetch_array($res3, MYSQL_BOTH) and $z<1){
 if(!(in_array($r3[0],$used_questions))){
-$z++;$q3=$r3[1];
+$z++;$q3=$r3[1];$q++;
 //printf ("Question: %s        Marks: %d     Unit: %d     LOD : %d",$r3[2],$r3[1],$r3[3],$r3[5]);
-         $table.= "<tr><td style='width:1000px'>"; 
+         $table.= "<tr><td>$q</td>";
+         $table.="<td style='width:1000px'>"; 
          $table.= htmlspecialchars(AesCtr::decrypt($r3[2], $pw, 256));
          $table.=  "</td><td>";   
          $table.=  $r3[1];        
@@ -278,7 +290,7 @@ $marks=4;
 $table.=  "</table>";
 $table.=  "<br><center><strong>Part-A</strong></center><br>";
 $table.=  "<center><table border='1' style='border-collapse: collapse;'>";
-$table.=  "<tr><th>Question</th><th>Marks</th><th>LOD</th><th>CO</th></tr>";  
+$table.=  "<tr><th>No</th><th>Question</th><th>Marks</th><th>LOD</th><th>CO</th></tr>";  
 while($x<=5){
 		//echo "<script>console.log('Here1');</script>";
 			if($cnt[$x]==1)
@@ -297,14 +309,14 @@ while($x<=5){
 
              }
                        
-                       
+$q=0;                       
 $x=1;
 $used=array();
 $x=1;
 $table.= "</table></center>";
 $table.= "<br><center><strong>Part-B</strong></center><br><br>";
 $table.= "<center><table border='1' style='border-collapse: collapse;'>";
-$table.= "<tr><th>Question</th><th>Marks</th><th>LOD</th><th>CO</th></tr>";
+$table.= "<tr><th>No</th><th>Question</th><th>Marks</th><th>LOD</th><th>CO</th></tr>";
      $sem = mysql_result(mysql_query("select Semester from Course where Course_ID='$CID'"),0);
 $y=0;
 while($x<=5){
@@ -312,6 +324,7 @@ while($x<=5){
   {
    $used=pick_theory_questions($x,$CID,$used,$y);
    $y++; 
+   
   }
    $x++;
    $y=0;

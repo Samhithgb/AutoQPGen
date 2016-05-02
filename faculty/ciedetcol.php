@@ -44,13 +44,13 @@
 
 		
 	    <form class="form" method="post" action="ciedetails.php">
-	        Type "yes" against the unit number if that unit is included in the syllabus for the exam "no" otherwise.
+	        Type "Y or y" against the unit number if that unit is included in the syllabus for the exam.
             <br><br>
            
             <br>
 	    <input id="uid1" name="unit_1" type="text" placeholder="Unit 1" required>
       <label>
-            <input id="uid2" name="unit_2" type="text" required>
+            <input id="uid2" name="unit_2" type="text" placeholder="Unit 2" required>
             </label>
             <input id="uid3" name="unit_3" type="text" placeholder="Unit 3" required>
           
@@ -78,18 +78,6 @@
 		</form>
 	</div>
 	
-	<ul class="bg-bubbles">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ul>
 </div>
 
 

@@ -103,17 +103,6 @@ if(isset($_REQUEST['save'])){
 			<button name="save" type="submit" id="login-button">Next</button>
 			</form>
 </div>
-<ul class="bg-bubbles">
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-		<li></li>
-	</ul>	
+
 			
 </div></body></html>
