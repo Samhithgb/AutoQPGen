@@ -29,13 +29,6 @@ Automatic Question Paper Generator is a project that generates questions papers 
 4. re-Captcha from Google
 5. Session-timeouts
 
-#How to use?
-
-1.Uses LAMP stack (preferably.However, runs in XAMPP as well)
-2. Copy the files into /var/www/html folder (in Linux-based systems) or Xampp htdocs folder.
-3. Change the paths accordingly in the php files.
-4. Import .sql file into the MySQL database. Use the name - Question_Paper_Generator. Username and password for MySQL database have to be changed accordingly.
-5. Run the welcome.php from localhost.
 
 
 
